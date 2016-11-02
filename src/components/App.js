@@ -12,7 +12,7 @@ export default class App extends Component {
       titleValue: '',
       linkValue: '',
       descriptionValue: '',
-      optionValue: 'week3',
+      optionValue: 'week4',
       week1: [
         {
           title: 'JavaScript Assessment',
@@ -144,6 +144,43 @@ export default class App extends Component {
           description: 'This is a description.',
         },
       ],
+      week4: [
+        {
+          title: 'React for Beginners',
+          link: 'https://reactforbeginners.com/',
+          description: 'With a focus on simplicity and readability, this course will have you building real time applications and dynamic website components in no time!',
+        },
+        {
+          title: 'Top 5 Tutorials for Getting Started with React',
+          link: 'http://andrewhfarmer.com/getting-started-tutorials/',
+          description: 'Five tutorials for a variety of skill levels.',
+        },
+        {
+          title: 'React Stateless Functional Components: Nine Wins You Might Have Overlooked',
+          link: 'https://medium.com/@housecor/react-stateless-functional-components-nine-wins-you-might-have-overlooked-997b0d933dbc#.oxjfw7n8b',
+          description: 'React .14 introduced a simpler way to define components called stateless functional components. These components use plain JavaScript functions. Here’s the before and after in ES6:',
+        },
+        {
+          title: 'ReactJS Basics - #7 Events & ReactJS',
+          link: 'https://www.youtube.com/watch?v=OcM__8q6p4c&list=PL55RiY5tL51oyA8euSROLjMFZbXaV7skS&index=8',
+          description: 'User Input is extremely important, which is why we need to handle Events, too. ReactJS makes this very easy as this video shows.',
+        },
+        {
+          title: 'ReactJS Basics - #8 State of Components',
+          link: 'https://www.youtube.com/watch?v=e5n9j9n83OM&list=PL55RiY5tL51oyA8euSROLjMFZbXaV7skS&index=9',
+          description: 'Updating and re-rendering the DOM would be nice. ReactJS uses State to - well - track the State of a Component and decide if it needs to update the DOM.',
+        },
+        {
+          title: 'ReactJS Basics - #9 How does ReactJS update the DOM?',
+          link: 'https://www.youtube.com/watch?v=Iw2BLUjQo1E&index=10&list=PL55RiY5tL51oyA8euSROLjMFZbXaV7skS',
+          description: 'How does ReactJS update the DOM? This Tutorial explains how ReactJS finds out if and which parts need to be updated.',
+        },
+        {
+          title: 'ReactJS Basics - #10 Stateless Components',
+          link: 'https://www.youtube.com/watch?v=SEkfzqIgvTo&index=11&list=PL55RiY5tL51oyA8euSROLjMFZbXaV7skS',
+          description: "Some ReactJS Components don't need State. Just leave it out then - learn more about Stateless Components.",
+        }
+      ],
     }
     this.handleTitleChange = this.handleTitleChange.bind(this)
     this.handleLinkChange = this.handleLinkChange.bind(this)
@@ -186,7 +223,7 @@ export default class App extends Component {
       <div className='container'>
         <div className='row'>
           <Header title='React Weekly Journal' />
-          <div className='col-xs-8 col-xs-offset-2 col-md-6 col-md-offset-3 col-lg-4 col-lg-offset-3'>
+          <div className='col-xs-8 col-xs-offset-2'>
             <NewResource
               titleValue={this.state.titleValue}
               handleTitleChange={this.handleTitleChange}
@@ -217,6 +254,10 @@ export default class App extends Component {
             <Week
               title='Week 3'
               entries={this.state.week3}
+            />
+            <Week
+              title='Week 4'
+              entries={this.state.week4}
             />
           </div>
         </div>
