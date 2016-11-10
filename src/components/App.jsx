@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
-import Header from './Header.js';
-import Week from './Week.js';
-import NewResource from './NewResource.js';
 import 'bootstrap/dist/css/bootstrap.css';
-import './App.css';
+
+import React, { Component } from 'react';
+import Header from './Header';
+import Week from './Week';
+import NewResource from './NewResource';
 
 export default class App extends Component {
   constructor() {
@@ -45,7 +45,7 @@ export default class App extends Component {
           description: 'This is a description.',
         },
         {
-          title: 'JavaScript: Understanding the Weird Parts',
+          title: 'JavaScript - Understanding the Weird Parts',
           link: 'https://www.udemy.com/understand-javascript/',
           description: 'This is a description.',
         },
@@ -179,86 +179,115 @@ export default class App extends Component {
           title: 'ReactJS Basics - #10 Stateless Components',
           link: 'https://www.youtube.com/watch?v=SEkfzqIgvTo&index=11&list=PL55RiY5tL51oyA8euSROLjMFZbXaV7skS',
           description: "Some ReactJS Components don't need State. Just leave it out then - learn more about Stateless Components.",
-        }
+        },
       ],
-    }
-    this.handleTitleChange = this.handleTitleChange.bind(this)
-    this.handleLinkChange = this.handleLinkChange.bind(this)
-    this.handleDescriptionChange = this.handleDescriptionChange.bind(this)
-    this.handleOptionChange = this.handleOptionChange.bind(this)
-    this.onEntrySubmit = this.onEntrySubmit.bind(this)
+    };
+    this.handleInputChange = this.handleInputChange.bind(this);
+    this.onEntrySubmit = this.onEntrySubmit.bind(this);
+    this.sortAlphabetically = this.sortAlphabetically.bind(this);
+    this.deleteEntry = this.deleteEntry.bind(this);
   }
 
-  onEntrySubmit(e) {
+  onEntrySubmit() {
     const newEntry = {
       title: this.state.titleValue,
       link: this.state.linkValue,
       description: this.state.descriptionValue,
     };
-    const selectWeek = this.state.optionValue
-    const newWeek = this.state[selectWeek].concat(newEntry)
+    const selectedWeek = this.state.optionValue;
+    const newWeek = this.state[selectedWeek].concat(newEntry);
     this.setState({
       titleValue: '',
       linkValue: '',
       descriptionValue: '',
-      [selectWeek]: newWeek,
-    })
+      [selectedWeek]: newWeek,
+    });
   }
 
-  handleTitleChange(e) {
-    this.setState({titleValue: e.target.value})
+  addWeek() {
+    console.log(this);
   }
-  handleLinkChange(e) {
-    this.setState({linkValue: e.target.value})
+
+  deleteEntry(idx, weekKey) {
+    const newWeek = this.state[weekKey].slice();
+    newWeek.splice(idx, 1);
+    this.setState({
+      [weekKey]: newWeek,
+    });
   }
-  handleDescriptionChange(e) {
-    this.setState({descriptionValue: e.target.value})
+
+  handleInputChange(e) {
+    this.setState({ [e.target.name]: e.target.value });
   }
-  handleOptionChange(e) {
-    this.setState({optionValue: e.target.value})
+
+  sortAlphabetically(theWeek, weekKey) {
+    const newWeekKey = weekKey.replace(/\s+/g, '').toLowerCase();
+    const sortedWeek = theWeek.sort((a, b) => {
+      const titleA = a.title.toUpperCase();
+      const titleB = b.title.toUpperCase();
+      if (titleA < titleB) {
+        return -1;
+      }
+      if (titleA > titleB) {
+        return 1;
+      }
+      return 0;
+    });
+    this.setState({
+      [newWeekKey]: sortedWeek,
+    });
   }
 
   render() {
     return (
-      <div className='container'>
-        <div className='row'>
-          <Header title='React Weekly Journal' />
-          <div className='col-xs-8 col-xs-offset-2'>
+      <div className="container">
+        <div className="row">
+          <Header title="React Weekly Journal" />
+          <div className="col-xs-8 col-xs-offset-2">
             <NewResource
               titleValue={this.state.titleValue}
-              handleTitleChange={this.handleTitleChange}
-
               linkValue={this.state.linkValue}
-              handleLinkChange={this.handleLinkChange}
-
               descriptionValue={this.state.descriptionValue}
-              handleDescriptionChange={this.handleDescriptionChange}
-
               optionValue={this.state.optionValue}
-              handleOptionChange={this.handleOptionChange}
 
+              handleInputChange={this.handleInputChange}
               addResource={this.onEntrySubmit}
             />
           </div>
         </div>
-        <div className='row'>
-          <div className='col-xs-8 col-xs-offset-2'>
+        <div className="row">
+          <div className="col-xs-8 col-xs-offset-2">
             <Week
-              title='Week 1'
+              title="Week 1"
               entries={this.state.week1}
+              sortAlphabetically={this.sortAlphabetically}
+              deleteEntry={this.deleteEntry}
             />
             <Week
-              title='Week 2'
+              title="Week 2"
               entries={this.state.week2}
+              sortAlphabetically={this.sortAlphabetically}
+              deleteEntry={this.deleteEntry}
             />
             <Week
-              title='Week 3'
+              title="Week 3"
               entries={this.state.week3}
+              sortAlphabetically={this.sortAlphabetically}
+              deleteEntry={this.deleteEntry}
             />
             <Week
-              title='Week 4'
+              title="Week 4"
               entries={this.state.week4}
+              sortAlphabetically={this.sortAlphabetically}
+              deleteEntry={this.deleteEntry}
             />
+          </div>
+        </div>
+        <div className="row">
+          <div className="col-xs-8 col-xs-offset-2">
+            <button style={{ width: '100%' }} className="btn btn-primary">
+              Add Week
+            </button>
           </div>
         </div>
       </div>
