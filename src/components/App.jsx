@@ -6,8 +6,8 @@ import Week from './Week';
 import NewResource from './NewResource';
 
 export default class App extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       titleValue: '',
       linkValue: '',
@@ -186,6 +186,7 @@ export default class App extends Component {
     this.onEntrySubmit = this.onEntrySubmit.bind(this);
     this.sortAlphabetically = this.sortAlphabetically.bind(this);
     this.deleteEntry = this.deleteEntry.bind(this);
+    this.addWeek = this.addWeek.bind(this);
   }
 
   onEntrySubmit() {
@@ -204,9 +205,9 @@ export default class App extends Component {
     });
   }
 
-  addWeek() {
-    console.log(this);
-  }
+  // addWeek() {
+  //   const newWeek = this.state
+  // }
 
   deleteEntry(idx, weekKey) {
     const newWeek = this.state[weekKey].slice();
@@ -285,7 +286,7 @@ export default class App extends Component {
         </div>
         <div className="row">
           <div className="col-xs-8 col-xs-offset-2">
-            <button style={{ width: '100%' }} className="btn btn-primary">
+            <button style={{ width: '100%' }} className="btn btn-primary" onClick={this.addWeek}>
               Add Week
             </button>
           </div>
