@@ -9,6 +9,9 @@ export default class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      editTitle: '',
+      editLink: '',
+      editDescription: '',
       titleValue: '',
       linkValue: '',
       descriptionValue: '',
@@ -186,7 +189,7 @@ export default class App extends Component {
     this.onEntrySubmit = this.onEntrySubmit.bind(this);
     this.sortAlphabetically = this.sortAlphabetically.bind(this);
     this.deleteEntry = this.deleteEntry.bind(this);
-    this.addWeek = this.addWeek.bind(this);
+    this.editEntry = this.editEntry.bind(this);
   }
 
   onEntrySubmit() {
@@ -205,9 +208,10 @@ export default class App extends Component {
     });
   }
 
-  // addWeek() {
-  //   const newWeek = this.state
-  // }
+  editEntry(idx, weekKey) {
+    const existingEntry = this.state[weekKey][idx];
+    console.log(existingEntry);
+  }
 
   deleteEntry(idx, weekKey) {
     const newWeek = this.state[weekKey].slice();
@@ -263,30 +267,34 @@ export default class App extends Component {
               entries={this.state.week1}
               sortAlphabetically={this.sortAlphabetically}
               deleteEntry={this.deleteEntry}
+              editEntry={this.editEntry}
             />
             <Week
               title="Week 2"
               entries={this.state.week2}
               sortAlphabetically={this.sortAlphabetically}
               deleteEntry={this.deleteEntry}
+              editEntry={this.editEntry}
             />
             <Week
               title="Week 3"
               entries={this.state.week3}
               sortAlphabetically={this.sortAlphabetically}
               deleteEntry={this.deleteEntry}
+              editEntry={this.editEntry}
             />
             <Week
               title="Week 4"
               entries={this.state.week4}
               sortAlphabetically={this.sortAlphabetically}
               deleteEntry={this.deleteEntry}
+              editEntry={this.editEntry}
             />
           </div>
         </div>
         <div className="row">
           <div className="col-xs-8 col-xs-offset-2">
-            <button style={{ width: '100%' }} className="btn btn-primary" onClick={this.addWeek}>
+            <button className="btn btn-primary btn-block" onClick={this.addWeek}>
               Add Week
             </button>
           </div>

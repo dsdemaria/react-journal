@@ -6,20 +6,31 @@ const entryStyle = {
   justifyContent: 'space-between',
 };
 
-const spanStyle = {
-  padding: ' 0 0 2em 2em',
-  color: 'LightGray',
-  cursor: 'pointer',
+const left = {
+  width: '75%',
 };
 
-const Entry = ({ title, href, description, deleteEntry, idx, weekKey }) => (
+const Entry = ({ title, href, description, deleteEntry, editEntry, idx, weekKey }) => (
   <div style={entryStyle}>
-    <div>
+    <div style={left}>
       <dt> <a href={href}>{title}</a> </dt>
       <dd>{description}</dd>
     </div>
-    <div>
-      <span style={spanStyle} onClick={() => deleteEntry(idx, weekKey)}>x</span>
+    <div className="btn-group" role="group">
+      <button
+        type="button"
+        className="btn btn-default"
+        onClick={() => deleteEntry(idx, weekKey)}
+      >
+        <span className="glyphicon glyphicon-trash" />
+      </button>
+      <button
+        type="button"
+        className="btn btn-default"
+        onClick={() => editEntry(idx, weekKey)}
+      >
+        <span className="glyphicon glyphicon-pencil" />
+      </button>
     </div>
   </div>
 );
@@ -33,4 +44,5 @@ Entry.propTypes = {
   idx: React.PropTypes.number,
   weekKey: React.PropTypes.string,
   deleteEntry: React.PropTypes.func,
+  editEntry: React.PropTypes.func,
 };
