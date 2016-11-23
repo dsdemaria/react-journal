@@ -261,7 +261,7 @@ export default class App extends Component {
         <div className="row">
           <div className="col-xs-8 col-xs-offset-2">
             <Weeks
-              weeks={this.state.weeks}
+              theState={this.state.weeks}
               sortAlphabetically={this.sortAlphabetically}
               deleteEntry={this.deleteEntry}
               editEntry={this.editEntry}

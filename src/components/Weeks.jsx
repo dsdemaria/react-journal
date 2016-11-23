@@ -3,7 +3,7 @@ import Week from './Week';
 
 export default class Weeks extends Component {
   render() {
-    const weeksMap = this.props.weeks.map((entry, mapIdx) => {
+    const weeksMap = this.props.theState.map((entry, mapIdx) => {
       return (
         <div key={mapIdx}>
           <Week
@@ -13,7 +13,7 @@ export default class Weeks extends Component {
             deleteEntry={this.props.deleteEntry}
             editEntry={this.props.editEntry}
             weeksIdx={mapIdx}
-            theState={this.props.weeks}
+            theState={this.props.theState}
 
             onEntrySubmit={this.props.onEntrySubmit}
           />
@@ -30,8 +30,9 @@ export default class Weeks extends Component {
 }
 
 Weeks.propTypes = {
-  weeks: React.PropTypes.arrayOf(React.PropTypes.object),
+  theState: React.PropTypes.arrayOf(React.PropTypes.object),
   sortAlphabetically: React.PropTypes.func,
   deleteEntry: React.PropTypes.func,
   editEntry: React.PropTypes.func,
+  onEntrySubmit: React.PropTypes.func,
 };

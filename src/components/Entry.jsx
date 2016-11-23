@@ -14,21 +14,14 @@ export default class Entry extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      editTitle: '',
-      editLink: '',
-      editDescription: '',
       isEditing: false,
     };
     this.toggleEditState = this.toggleEditState.bind(this);
-    this.handleInputChange = this.handleInputChange.bind(this);
   }
   toggleEditState() {
     this.setState({
       isEditing: !this.state.isEditing,
     });
-  }
-  handleInputChange(e) {
-    this.setState({ [e.target.name]: e.target.value });
   }
   render() {
     if (this.state.isEditing) {
@@ -39,6 +32,7 @@ export default class Entry extends Component {
             editEntry={this.props.editEntry}
             weeksIdx={this.props.weeksIdx}
             weekIdx={this.props.weekIdx}
+            theState={this.props.theState}
           />
           <hr />
         </div>
@@ -79,4 +73,5 @@ Entry.propTypes = {
   weeksIdx: React.PropTypes.number,
   deleteEntry: React.PropTypes.func,
   editEntry: React.PropTypes.func,
+  theState: React.PropTypes.arrayOf(React.PropTypes.object),
 };
