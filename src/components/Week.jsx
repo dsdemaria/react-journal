@@ -13,7 +13,7 @@ export default class Week extends Component {
   }
   toggleEditState() {
     this.setState({
-      isEditing: !this.state.isEditing,
+      isVisible: !this.state.isVisible,
     });
   }
 
@@ -35,18 +35,39 @@ export default class Week extends Component {
         </div>
       );
     });
-    if (this.state.isEditing) {
+
+    if (this.state.isVisible) {
       return (
         <div>
+          <h2 style={{ textAlign: 'center' }}>{this.props.title}</h2>
+          <hr />
+          <dl>
+            {weekEntries}
+          </dl>
+          <button
+            className="btn btn-default"
+            onClick={() => this.props.sortAlphabetically(this.props.weeksIdx)}
+          >
+            Sort Alphabetically
+          </button>
+          <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+            <button
+              type="button"
+              className="btn btn-default"
+              onClick={this.toggleEditState}
+            >
+              <div>Finished</div><span className="glyphicon glyphicon-menu-up" />
+            </button>
+          </div>
           <NewResource
             onEntrySubmit={this.props.onEntrySubmit}
             theState={this.props.theState}
             weeksIdx={this.props.weeksIdx}
           />
-          <hr />
         </div>
       );
     }
+
     return (
       <div>
         <h2 style={{ textAlign: 'center' }}>{this.props.title}</h2>

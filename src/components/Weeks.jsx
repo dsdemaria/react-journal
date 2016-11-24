@@ -5,7 +5,7 @@ export default class Weeks extends Component {
   render() {
     const weeksMap = this.props.theState.map((entry, mapIdx) => {
       return (
-        <div key={mapIdx}>
+        <div key={mapIdx} style={{ paddingBottom: '2em' }}>
           <Week
             title={`Week ${mapIdx + 1}`}
             week={entry.week}
@@ -17,7 +17,6 @@ export default class Weeks extends Component {
 
             onEntrySubmit={this.props.onEntrySubmit}
           />
-          <hr />
         </div>
       );
     });
