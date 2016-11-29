@@ -8,6 +8,8 @@ const entryStyle = {
 };
 const left = {
   width: '75%',
+  borderLeft: '2px solid #23527c',
+  paddingLeft: '1em',
 };
 
 export default class Entry extends Component {

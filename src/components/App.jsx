@@ -226,8 +226,15 @@ export default class App extends Component {
   deleteEntry(weeksIdx, weekIdx) {
     const stateCopy = [...this.state.weeks];
     const newWeek = stateCopy[weeksIdx].week.slice();
+    // const newState = [
+    //   ...this.state.weeks[weeksIdx].week
+    //     .slice(0, weekIdx)
+    //     .concat(...this.state.weeks[weeksIdx].week
+    //     .slice(weekIdx + 1))
+    // ];
     newWeek.splice(weekIdx, 1);
     stateCopy[weeksIdx].week = newWeek;
+    console.log(stateCopy)
     this.setState({
       weeks: stateCopy,
     });
