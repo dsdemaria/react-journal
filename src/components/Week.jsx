@@ -3,6 +3,13 @@ import Entry from './Entry';
 import NewResource from './NewResource';
 import './week.css';
 
+const center = {
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'center',
+  paddingBottom: '2em',
+};
+
 export default class Week extends Component {
   constructor() {
     super();
@@ -27,7 +34,6 @@ export default class Week extends Component {
             description={entry.description}
             deleteEntry={this.props.deleteEntry}
             editEntry={this.props.editEntry}
-            sortAlphabetically={this.props.sortAlphabetically}
             weekIdx={mapIdx}
             weeksIdx={this.props.weeksIdx}
             theState={this.props.theState}
@@ -39,17 +45,18 @@ export default class Week extends Component {
     if (this.state.isVisible) {
       return (
         <div>
-          <h2 style={{ textAlign: 'center' }}>{this.props.title}</h2>
-          <hr />
+          <div style={center}>
+            <h2 style={{ textAlign: 'center' }}>{this.props.title}</h2>
+            <a
+              className="btn btn-link btn-xs"
+              onClick={() => this.props.sortAlphabetically(this.props.weeksIdx)}
+            >
+              Sort Alphabetically
+            </a>
+          </div>
           <dl>
             {weekEntries}
           </dl>
-          <button
-            className="btn btn-default"
-            onClick={() => this.props.sortAlphabetically(this.props.weeksIdx)}
-          >
-            Sort Alphabetically
-          </button>
           <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
             <button
               type="button"
@@ -64,23 +71,25 @@ export default class Week extends Component {
             theState={this.props.theState}
             weeksIdx={this.props.weeksIdx}
           />
+          <hr />
         </div>
       );
     }
 
     return (
       <div>
-        <h2 style={{ textAlign: 'center' }}>{this.props.title}</h2>
-        <hr />
+        <div style={center}>
+          <h2 style={{ textAlign: 'center' }}>{this.props.title}</h2>
+          <a
+            className="btn btn-link btn-xs"
+            onClick={() => this.props.sortAlphabetically(this.props.weeksIdx)}
+          >
+            Sort Alphabetically
+          </a>
+        </div>
         <dl>
           {weekEntries}
         </dl>
-        <button
-          className="btn btn-default"
-          onClick={() => this.props.sortAlphabetically(this.props.weeksIdx)}
-        >
-          Sort Alphabetically
-        </button>
         <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
           <button
             type="button"
@@ -90,6 +99,7 @@ export default class Week extends Component {
             <div>Add Entry</div><span className="glyphicon glyphicon-menu-down" />
           </button>
         </div>
+        <hr />
       </div>
     );
   }

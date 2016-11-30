@@ -5,8 +5,8 @@ import Header from './Header';
 import Weeks from './Weeks';
 
 export default class App extends Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
     this.state = {
       weeks: [
         {
@@ -192,6 +192,7 @@ export default class App extends Component {
     this.sortAlphabetically = this.sortAlphabetically.bind(this);
     this.deleteEntry = this.deleteEntry.bind(this);
     this.editEntry = this.editEntry.bind(this);
+    this.addWeek = this.addWeek.bind(this);
   }
 
   onEntrySubmit(aTitle, aLink, aDes, theState, idx) {
@@ -205,6 +206,13 @@ export default class App extends Component {
     newState[idx].week = newWeek;
     this.setState({
       weeks: newState,
+    });
+  }
+
+  addWeek() {
+    this.setState({
+      weeks:
+      [...this.state.weeks].concat({ week: [] }),
     });
   }
 
@@ -234,7 +242,11 @@ export default class App extends Component {
     // ];
     newWeek.splice(weekIdx, 1);
     stateCopy[weeksIdx].week = newWeek;
+<<<<<<< HEAD
     console.log(stateCopy)
+=======
+
+>>>>>>> addWeek
     this.setState({
       weeks: stateCopy,
     });
@@ -274,6 +286,12 @@ export default class App extends Component {
               editEntry={this.editEntry}
               onEntrySubmit={this.onEntrySubmit}
             />
+          <button
+            onClick={this.addWeek}
+            className="btn btn-default btn-block"
+          >
+            Add Week
+          </button>
           </div>
         </div>
       </div>
