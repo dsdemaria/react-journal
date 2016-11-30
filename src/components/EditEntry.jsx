@@ -46,7 +46,10 @@ export default class EditEntry extends Component {
           </button>
         </div>
         <div className="panel-body">
-          <form className="form-horizontal">
+          <form
+            className="form-horizontal"
+            style={{ paddingBottom: '1em' }}
+          >
             <div>
               <label className="control-label">Title</label>
               <input
