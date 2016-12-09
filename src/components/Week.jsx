@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Entry from './Entry';
 import NewResource from './NewResource';
-import './week.css';
 
 const center = {
   display: 'flex',
