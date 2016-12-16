@@ -4,6 +4,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 import './cssanimations.css';
 import Header from './Header';
 import Weeks from './Weeks';
+import Footer from './Footer';
 
 const center = {
   display: 'flex',
@@ -140,11 +141,14 @@ export default class App extends Component {
             />
             <button
               onClick={this.addWeek}
-              className="btn btn-default btn-block"
+              className="btn btn-primary btn-block"
             >
               Add Week
             </button>
           </div>
+        </div>
+        <div className="row">
+          <Footer />
         </div>
       </div>
     );
